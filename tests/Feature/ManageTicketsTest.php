@@ -10,8 +10,23 @@ class ManageTicketsTest extends TestCase
 	use RefreshDatabase;
 
     /** @test */
+    public function guess_may_not_create_events()
+    {
+        $this->withExceptionHandling();
+
+        $event = create('App\Event');
+        
+        $this->get("{$event->path()}/tickets/create")
+            ->assertRedirect('/login');  
+
+        $this->post("{$event->path()}/tickets")
+            ->assertRedirect('/login');  
+    }
+
+    /** @test */
     public function users_can_add_new_ticket_for_the_selected_event()
     {
+        $this->signIn();
     	$event = create('App\Event');
     	$ticket = make('App\Ticket',['event_id' => $event->id]);
 

@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class TicketsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');    
+    }
+
 	public function create(Event $event)
 	{
 		return view('tickets.create', compact('event'));
