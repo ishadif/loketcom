@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class VenuesController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('auth');	
+	}
+
 	public function index()
 	{
 		$venues = Venue::all();
@@ -21,10 +26,32 @@ class VenuesController extends Controller
 
     public function store()
     {
+    	request()->validate([
+    		'name' => 'required',
+    		'address' => 'required'
+    	]);
+
     	Venue::create([
     		'name' => request('name'),
     		'address' => request('address')
     	]);
+
+    	return redirect('venues');
+    }
+
+    public function edit(Venue $venue)
+    {
+    	return view('venues.edit', compact('venue'));
+    }
+
+    public function update(Venue $venue)
+    {
+    	request()->validate([
+    		'name' => 'required',
+    		'address' => 'required'
+    	]);
+
+    	$venue->update(request()->all());
 
     	return redirect('venues');
     }

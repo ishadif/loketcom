@@ -22,3 +22,22 @@ Laravel is accessible, yet powerful, providing tools needed for large, robust ap
 6. run `php artisan vendor:publish --provider="Thujohn\Twitter\TwitterServiceProvider"` and modifiy the config file with your own information. refer to [this package](https://github.com/thujohn/twitter) for further info
 7. run `npm install` then `npm run dev` to compile all assets
 
+## Testing Configuration
+
+since i use `PHPUnit` and `sqlite` for testing, you might want to edit `phpunit.xml` file as follow:
+
+```
+	// rest of the file
+	
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="DB_CONNECTION" value="sqlite"/>
+        <env name="DB_DATABASE" value=":memory:"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="QUEUE_DRIVER" value="sync"/>
+    </php>
+
+   //rest of the file
+```
+

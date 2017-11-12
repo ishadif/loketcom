@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="row mt-4">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header" style="display:flex;">
                     <span>All Venues</span>
@@ -18,7 +18,7 @@
                                 <th scope="col">Nama</th>
                                 <th scope="col">Tanggal</th>
                                 <th scope="col">Tempat</th>
-                                <th scope="col" colspan="3">Aksi</th>
+                                <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,13 +28,7 @@
                                 <td>{{ $venue->address }}</td>
                                 <td>{{ $venue->created_at }}</td>
                                 <td>
-                                    <a href="#"><span class="oi oi-eye" title="Lihat Event"></span></a>
-                                </td>
-                                <td>
-                                    <a href="#"><span class="oi oi-pencil" title="Ubah Event"></span></a>
-                                </td>
-                                <td>
-                                    <a href="#"><span class="oi oi-trash" title="Hapus Event"></span></a>
+                                    <a href="/venues/{{ $venue->id }}"><span class="oi oi-pencil" title="Ubah Venue"></span></a>
                                 </td>
                             </tr>
                             @empty

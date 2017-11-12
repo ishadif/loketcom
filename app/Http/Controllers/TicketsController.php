@@ -15,11 +15,15 @@ class TicketsController extends Controller
 
 	public function create(Event $event)
 	{
-		return view('tickets.create', compact('event'));
-	}
+        $this->authorize('create', $event);
+        
+        return view('tickets.create', compact('event'));
+    }
 
     public function store(Event $event)
     {
+        $this->authorize('create', $event);
+
     	$event->addTicket([
     		'name' => request('name'),
     		'price' => request('price'),
@@ -37,6 +41,8 @@ class TicketsController extends Controller
     public function update(Event $event, $ticket)
     {
         $ticket = Ticket::findOrFail($ticket);
+
+        $this->authorize('update', $ticket);
 
         $ticket->update(request()->all());
 

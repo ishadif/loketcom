@@ -27,7 +27,8 @@ class ManageTicketsTest extends TestCase
     public function users_can_add_new_ticket_for_the_selected_event()
     {
         $this->signIn();
-    	$event = create('App\Event');
+        
+    	$event = create('App\Event',['user_id' => auth()->id()]);
     	$ticket = make('App\Ticket',['event_id' => $event->id]);
 
     	$this->post("{$event->path()}/tickets", $ticket->toArray());

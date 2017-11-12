@@ -34,6 +34,8 @@ Route::patch('/events/{event}/tickets/{ticket}','TicketsController@update');
 Route::get('/venues', 'VenuesController@index');
 Route::get('/venues/create', 'VenuesController@create');
 Route::post('/venues', 'VenuesController@store');
+Route::get('/venues/{venue}', 'VenuesController@edit');
+Route::patch('/venues/{venue}', 'VenuesController@update');
 
 
 

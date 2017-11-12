@@ -17,10 +17,12 @@
                             {{ $event->venue->name }} &mdash; {{ $event->event_date->toFormattedDateString() }}
                         </p>
                     </div>
-
-                    <div class="ml-auto">
-                        <a href="{{ $event->path() }}/edit" class="btn btn-text">Edit</a>
-                    </div>
+                    
+                    @can('update', $event)
+                        <div class="ml-auto">
+                            <a href="{{ $event->path() }}/edit" class="btn btn-text">Edit</a>
+                        </div>
+                    @endcan
 
                 </div>
 
