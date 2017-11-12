@@ -10,7 +10,7 @@ class TweetEventsController extends Controller
 {
     public function post(Event $event)
     {
-        $url  = route('events.show',['id' => $event->id]);
+        $url  = route('events.show',['slug' => $event->slug]);
 
     	try {
 	    	Twitter::postTweet([
